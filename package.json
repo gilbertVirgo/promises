@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/gilbertVirgo/promises#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "twilio": "^3.54.1"
   }
 }
