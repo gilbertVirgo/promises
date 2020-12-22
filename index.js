@@ -1,3 +1,5 @@
+const dateFormat = require("dateformat");
+
 const { promises: fs } = require("fs");
 const send = require("./send");
 
@@ -15,13 +17,19 @@ const init = async () => {
   // Fix this line
   const today = promises[dayOfYear() % promises.length];
 
-  console.log(today);
-
   for (const { phone } of profiles) {
-    await send({
+    const { errorMessage, errorCode, to } = await send({
       to: phone,
       body: today,
     });
+
+    console.log(
+      `[${dateFormat(new Date(), "dd/mm/yyyy HH:MM:ss")}] ${JSON.stringify({
+        errorMessage,
+        errorCode,
+        to,
+      })}`
+    );
   }
 };
 
